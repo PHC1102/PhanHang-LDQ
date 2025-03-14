@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV xin làm người yêu Phan Hằng</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --secondary: #f9f7f7;
+            --accent: #ff8e8e;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.7rem 2rem;
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .navbar-logo {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        
+        .navbar-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .navbar-link {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-link:hover {
+            color: var(--primary);
+        }
+        
+        .navbar-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Header */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.5)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        .header-content {
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            max-width: 800px;
+            animation: fadeIn 2s ease;
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .header-content.visible {
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 1s ease;
+        }
+        
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .header-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+        }
+        
+        .header-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.7);
+        }
+        
+        /* Heart animations */
+        .heart {
+            position: absolute;
+            background-color: var(--primary);
+            display: inline-block;
+            height: 30px;
+            margin: 0 10px;
+            position: absolute;
+            transform: rotate(-45deg);
+            width: 30px;
+            opacity: 0.8;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            background-color: var(--primary);
+            border-radius: 50%;
+            height: 30px;
+            position: absolute;
+            width: 30px;
+        }
+        
+        .heart:before {
+            top: -15px;
+            left: 0;
+        }
+        
+        .heart:after {
+            left: 15px;
+            top: 0;
+        }
+        
+        .flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite, rotate 10s linear infinite;
+        }
+        
+        .flower:before {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            transform: rotate(45deg);
+        }
+        
+        /* Bubble animation */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: bubbleFloat 10s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(100vh) scale(0.2);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+        
+        /* Scroll down indicator */
+        .scroll-down {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .scroll-down span {
+            color: white;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .scroll-down .arrow {
+            width: 30px;
+            height: 30px;
+            border-right: 3px solid white;
+            border-bottom: 3px solid white;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Profile section */
+        .profile-section {
+            padding: 7rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        
+        .section-title.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background-color: var(--primary);
+            transition: width 1s ease 0.5s;
+        }
+        
+        .section-title.visible:after {
+            width: 100px;
+        }
+        
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .profile-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+        
+        .profile-image.visible {
+            transform: translateX(0);
+            opacity: 1;
+            transition: all 1s ease;
+        }
+        
+        .profile-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.3);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .profile-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .profile-details {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateX(50px);
+            opacity: 0;
+        }
+        
+        .profile-details.visible {
+            transform: translateX(0);
+            opacity: 1;
+            transition: all 1s ease 0.3s;
+        }
+        
+        .trait-list {
+            list-style-type: none;
+        }
+        
+        .trait-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            transform: translateX(20px);
+            opacity: 0;
+        }
+        
+        .trait-item.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .trait-item:hover {
+            transform: translateX(10px);
+            background-color: rgba(255, 107, 107, 0.1);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+        }
+        
+        .trait-icon {
+            margin-right: 1rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .trait-item:hover .trait-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        /* Gallery section */
+        .gallery-section {
+            padding: 7rem 2rem;
+            background-color: rgba(255, 107, 107, 0.1);
+        }
+        
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .gallery-item.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            color: white;
+            z-index: 1;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Message section (new) */
+        .message-section {
+            padding: 7rem 2rem;
+            background: linear-gradient(135deg, #fff5f5, #ffe9e9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+       .message-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+            position: relative;
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .message-container.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .message-content {
+            text-align: center;
+        }
+        
+        .message-content h3 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+        
+        .message-decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .message-decoration.top-left {
+            top: -30px;
+            left: -30px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .message-decoration.bottom-right {
+            bottom: -30px;
+            right: -30px;
+            background-color: var(--accent);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        /* Contact section */
+        .contact-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-top: 2rem;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-circle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-circle.one {
+            width: 300px;
+            height: 300px;
+            top: -150px;
+            left: -100px;
+        }
+        
+        .contact-circle.two {
+            width: 200px;
+            height: 200px;
+            bottom: -100px;
+            right: 50px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 2rem;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(-45deg);
+            }
+            100% {
+                transform: translateY(0) rotate(-45deg);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .profile-image, .profile-details {
+                max-width: 100%;
+            }
+            
+            .navbar-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#home" class="navbar-logo">❤️ CV</a>
+        <div class="navbar-links">
+            <a href="#home" class="navbar-link">Trang Chủ</a>
+            <a href="#profile" class="navbar-link">Về Tớ</a>
+            <a href="#gallery" class="navbar-link">Hình Ảnh</a>
+            <a href="#message" class="navbar-link">Lời Nhắn</a>
+            <a href="#contact" class="navbar-link">Liên Hệ</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="header-content">
+            <h1>CV Xin Làm Người Yêu Phan Hằng</h1>
+            <p>Hãy để tớ chứng minh rằng tớ là người hoàn hảo cho bạn</p>
+            <a href="#message" class="header-btn">Xem Lời Nhắn</a>
+        </div>
+        
+        <div class="scroll-down">
+            <span>Cuộn xuống</span>
+            <div class="arrow"></div>
+        </div>
+        
+        <!-- Hearts and flowers animation -->
+        <script>
+            function createHearts() {
+                const header = document.querySelector('header');
+                const headerWidth = header.offsetWidth;
+                const headerHeight = header.offsetHeight;
+                
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart');
+                        
+                        const xPos = Math.random() * headerWidth;
+                        const yPos = Math.random() * headerHeight;
+                        const size = Math.random() * 20 + 10;
+                        const duration = Math.random() * 4 + 3;
+                        
+                        heart.style.left = `${xPos}px`;
+                        heart.style.top = `${yPos}px`;
+                        heart.style.width = `${size}px`;
+                        heart.style.height = `${size}px`;
+                        heart.style.animationDuration = `${duration}s`;
+                        
+                        header.appendChild(heart);
+                        
+                        setTimeout(() => {
+                            heart.remove();
+                        }, duration * 1000);
+                    }, i * 300);
+                }
+            }
+            
+            function createFlowers() {
+                const header = document.querySelector('header');
+                const headerWidth = header.offsetWidth;
+                const headerHeight = header.offsetHeight;
+                
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const flower = document.createElement('div');
+                        flower.classList.add('flower');
+                        
+                        const xPos = Math.random() * headerWidth;
+                        const yPos = Math.random() * headerHeight;
+                        const size = Math.random() * 20 + 15;
+                        const duration = Math.random() * 5 + 4;
+                        
+                        flower.style.left = `${xPos}px`;
+                        flower.style.top = `${yPos}px`;
+                        flower.style.width = `${size}px`;
+                        flower.style.height = `${size}px`;
+                        flower.style.animationDuration = `${duration}s, ${duration + 2}s`;
+                        
+                        header.appendChild(flower);
+                        
+                        setTimeout(() => {
+                            flower.remove();
+                        }, duration * 1000);
+                    }, i * 400);
+                }
+            }
+            
+            function createBubbles() {
+                const header = document.querySelector('header');
+                const headerWidth = header.offsetWidth;
+                
+                for (let i = 0; i < 10; i++) {
+                    setTimeout(() => {
+                        const bubble = document.createElement('div');
+                        bubble.classList.add('bubble');
+                        
+                        const size = Math.random() * 60 + 20;
+                        const xPos = Math.random() * headerWidth;
+                        const duration = Math.random() * 10 + 5;
+                        
+                        bubble.style.width = `${size}px`;
+                        bubble.style.height = `${size}px`;
+                        bubble.style.left = `${xPos}px`;
+                        bubble.style.bottom = `-${size}px`;
+                        bubble.style.animationDuration = `${duration}s`;
+                        bubble.style.animationDelay = `${Math.random() * 5}s`;
+                        
+                        header.appendChild(bubble);
+                        
+                        setTimeout(() => {
+                            bubble.remove();
+                        }, duration * 1000);
+                    }, i * 1000);
+                }
+            }
+            
+            // Run animations
+            setInterval(createHearts, 2000);
+            setInterval(createFlowers, 3000);
+            setInterval(createBubbles, 3000);
+            createHearts();
+            createFlowers();
+            createBubbles();
+        </script>
+    </header>
+
+    <section class="profile-section" id="profile">
+        <h2 class="section-title">Về Bản Thân Tớ</h2>
+        <div class="profile-container">
+            <div class="profile-image">
+<img src="Profile.png" alt="Hình ảnh của Tớ">
+            </div>
+            <div class="profile-details">
+                <ul class="trait-list">
+                    <li class="trait-item">
+                        <span class="trait-icon">❤️</span>
+                        <div>
+                            <h3>Tính Cách Vui Vẻ</h3>
+                            <p>Tớ luôn mang đến năng lượng tích cực và nụ cười cho mọi người xung quanh. Tôi tin rằng tiếng cười là liều thuốc tốt nhất cho mọi mối quan hệ.</p>
+                        </div>
+                    </li>
+                    <li class="trait-item">
+                        <span class="trait-icon">💭</span>
+                        <div>
+                            <h3>Biết Lắng Nghe</h3>
+                            <p>Tớ luôn dành thời gian để thực sự lắng nghe và hiểu đối phương. Tôi tin rằng giao tiếp là chìa khóa của mọi mối quan hệ bền vững.</p>
+                        </div>
+                    </li>
+                    <li class="trait-item">
+                        <span class="trait-icon">🌟</span>
+                        <div>
+                            <h3>Sáng Tạo</h3>
+                            <p>Tớ luôn tìm kiếm những cách mới để làm cho cuộc sống trở nên thú vị hơn. Từ những buổi hẹn hò đặc biệt đến những bất ngờ nhỏ hàng ngày.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+ <section class="gallery-section" id="gallery">
+    <h2 class="section-title">Điều tớ thích ở Hằng</h2>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="khichat.webp" alt="Hình ảnh 1">
+            <div class="gallery-item-caption">
+                <h3>Khí chất</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="PhCuoi.webp" alt="Hình ảnh 2">
+            <div class="gallery-item-caption">
+                <h3>Nụ cười tươi</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="ngotngao.webp" alt="Hình ảnh 3">
+            <div class="gallery-item-caption">
+                <h3>Ngọt Ngào</h3>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="download.png" alt="Hình ảnh 4">
+            <div class="gallery-item-caption">
+                <h3>Hài hước</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- New Message Section -->
+    <section class="message-section" id="message">
+        <h2 class="section-title">Lời Nhắn Gửi Phan Hằng</h2>
+        <div class="message-container">
+            <div class="message-decoration top-left"></div>
+            <div class="message-decoration bottom-right"></div>
+            <div class="message-content">
+                <h3>Chào Phan Hằng!</h3>
+                <div class="message-text">
+                    <p>Tớ đã để ý bạn từ lâu nhưng chưa có cơ hội được làm quen. Tớ thực sự ấn tượng với nụ cười, sự thông minh và tính cách dễ thương của bạn.</p>
+                    <p>Tớ không biết liệu bạn có nhận ra tớ không, nhưng tớ thực sự mong muốn được có cơ hội trò chuyện và hiểu nhau hơn. Tớ tin rằng chúng ta có nhiều điểm chung và có thể tạo nên những kỷ niệm tuyệt vời cùng nhau.</p>
+                    <p>Tớ không mong chờ một câu trả lời ngay lập tức, nhưng nếu bạn cũng muốn tìm hiểu nhau, hãy cho tớ một cơ hội nhé. Tớ hứa sẽ làm bạn mỉm cười mỗi ngày và luôn ở bên cạnh lắng nghe và chia sẻ.</p>
+                </div>
+                <a href="#contact" class="header-btn">Liên hệ với tớ</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="contact-circle one"></div>
+        <div class="contact-circle two"></div>
+        <div class="contact-container">
+            <h2 class="section-title">Liên Hệ</h2>
+            <p>Nếu bạn muốn biết thêm về tớ hoặc đơn giản là muốn trò chuyện, đừng ngần ngại liên hệ nhé!</p>
+            <a href="https://www.facebook.com/le.duy.quy.2024" class="contact-button">
+    Kết bạn với tớ trên Facebook
+</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Được tạo ra với tất cả tình yêu và sự chân thành</p>
+        <p>&copy; 2025 - Dành riêng cho Phan Hằng</p>
+    </footer>
+
+    <!-- Scroll animations -->
+    <script>
+        // Add scroll event listener for navbar changes
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Check for elements to animate when scrolled into view
+            const animateElements = document.querySelectorAll('.section-title, .profile-image, .profile-details, .trait-item, .gallery-item, .message-container');
+            
+            animateElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                    
+                    // Add delay for trait items
+                    if (element.classList.contains('trait-item')) {
+                        const traitItems = document.querySelectorAll('.trait-item');
+                        traitItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 200);
+                        });
+                    }
+                    
+                    // Add delay for gallery items
+                    if (element.classList.contains('gallery-item')) {
+                        const galleryItems = document.querySelectorAll('.gallery-item');
+                        galleryItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 150);
+                        });
+                    }
+                }
+            });
+        });
+        
+        // Make header content visible on load
+        window.addEventListener('load', function() {
+            document.querySelector('.header-content').classList.add('visible');
+            
+            // Smooth scroll for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Simulate scroll to trigger animations
+            setTimeout(() => {
+                window.scrollBy(0, 1);
+                window.scrollBy(0, -1);
+            }, 500);
+        });
+        
+        // Parallax effect for header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollValue = window.scrollY;
+            header.style.backgroundPositionY = scrollValue * 0.5 + 'px';
+        });
+        
+        // Dynamic color change for hearts
+        setInterval(() => {
+            const hearts = document.querySelectorAll('.heart');
+            const randomColor = `hsl(${Math.random() * 30 + 340}, 100%, 65%)`;
+            
+            hearts.forEach(heart => {
+                heart.style.backgroundColor = randomColor;
+                heart.querySelectorAll(':before, :after').forEach(pseudo => {
+                    pseudo.style.backgroundColor = randomColor;
+                });
+            });
+        }, 5000);
+    </script>
+</body>
+</html>
